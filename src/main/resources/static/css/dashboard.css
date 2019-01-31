@@ -1,0 +1,60 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+main {
+    min-height: 100vh;
+    color: #fff9ff;
+    background: #000040;
+    font-family: 'Exo 2', sans-serif;
+}
+
+.gridcontainer {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 3fr;
+    grid-template-areas:
+            "profile alarm"
+            "attended events";
+    justify-items: stretch;
+    align-items: stretch;
+
+}
+
+.third {
+    border-top: 1px solid #ab95af;
+    border-bottom: 1px solid #ab95af;
+}
+
+.date {
+    min-width: 10em;
+}
+
+#profile {
+    grid-area: profile;
+    width: 100%;
+    background: red;
+}
+
+#alarm {
+    grid-area: alarm;
+    width: 100%;
+    background: yellow;
+}
+
+#events {
+    grid-area: events;
+    width: 100%;
+    background: green;
+}
+
+#attended {
+    grid-area: attended;
+    width: 100%;
+    background: blue;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="cs"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="robots" content="noindex">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../static/css/intro.css" th:href="${'css/intro.css'}" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700&amp;subset=latin-ext" rel="stylesheet">
+        <title>Course Watchdog - intro</title>
+    </head>
+    <body>
+
+
+        <main>
+            <div class="left">
+                <div id="about">
+
+                    <p class="premise bold">Budu chytřejší.</p>
+                    <p class="premise bold">Naučím se něco nového z IT.</p>
+                    <p class="premise bold">Seznámím se s novými lidmi.</p>
+
+                    <div class="hackathon">
+                        <p class="bold">Czechitas Hackathon 26.1.2019</p>
+                        <p>Téma: "Novoroční předsevzetí"</p>
+                        <br>
+                        <p>Nápad: aplikace, která bude zobrazovat všechny dostupné kurzy Czechitas a dle preferencí uživatele upozorní
+                        na otevření registrace.</p>
+                        <br>
+                        <p>Realizace: pomocná aplikace, která sbírá data z webu a ukládá je do databáze + klientská aplikace, která tato data využívá</p>
+                        <br>
+                        <p>Technologie: HTML, CSS, JS. Spring Boot, Java, Thymeleaf, MariaDB. Heroku.</p>
+                    </div>
+
+                </div>
+                <div id="bookmark" onclick="showAboutProject()">
+                    O projektu
+                </div>
+
+
+
+            </div>
+
+            <div class="right">
+                <div id="appname">
+                        <div class="image">
+                            <img src="images/dog6.png">
+                        </div>
+                        <h1>Course Watchdog</h1>
+                </div>
+
+                <form id="loginform" method="post">
+                    <table class="formtable">
+                        <tr>
+                            <td colspan="2" class="heading">
+                                <label>Pokud už máte svůj uživatelský účet...</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">E-mail</label></td>
+                            <td><input type="email" id="email" name="uzivatelEmail"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="passwd">Heslo</label></td>
+                            <td><input type="password" id="passwd" name="uzivatelHeslo"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><button type="submit">Přihlásit</button></td>
+                        </tr>
+                    </table>
+                </form>
+
+                <form id="guestform" method="post" action="dashboard.html" th:action="${'dashboard.html'}">
+                    <table class="formtable">
+                        <tr>
+                            <td><label>Prohlédněte si aplikaci bez přihlašování.</label></td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit">Vstoupit jako host</button></td>
+                        </tr>
+                    </table>
+                </form>
+
+                <form id="signupform" method="post">
+                    <table class="formtable">
+                        <tr>
+                            <td><label>Chcete si založit nový účet?</label></td>
+                        </tr>
+                        <tr>
+                            <td><button type="submit">Zaregistrovat</button></td>
+                        </tr>
+                    </table>
+                </form>
+
+
+            </div>
+
+
+
+        </main>
+
+
+        <script src="scripts/intro.js"></script>
+    </body>
+</html>

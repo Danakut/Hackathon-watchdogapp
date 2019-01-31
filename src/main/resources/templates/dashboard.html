@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cs"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="robots" content="noindex">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="../static/css/dashboard.css" th:href="${'css/dashboard.css'}" type="text/css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700&amp;subset=latin-ext" rel="stylesheet">
+        <title>Course Watchdog - dashboard</title>
+    </head>
+    <body>
+        <main>
+            <div class="gridcontainer">
+
+                <div id="profile">
+                    <p>Here is the profile.</p>
+
+                </div>
+
+                <div id="alarm" class="third">
+                    <h2>Nastavená upozornění</h2>
+                    <table>
+                        <thead>
+                            <th>Hlídám</th>
+                            <th>Nalezeno</th>
+                            <th>Stav registrace</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div id="events" class="third">
+                    <h2>Nadcházející kurzy</h2>
+                    <table>
+                        <thead>
+                            <th colspan="2">Datum</th>
+                            <th>Linie</th>
+                            <th>Název</th>
+                            <th>Místo</th>
+                            <th>Začátek</th>
+                            <th>Konec</th>
+                        </thead>
+                        <tbody>
+                            <tr th:each="course : ${courseList}">
+                                <td class="date" th:text="${course.startDate}">11.11.1111</td>
+                                <td class="date" th:text="${course.endDate}"></td>
+                                <td th:text="${course.topic}">jsem originál</td>
+                                <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
+                                <td th:text="${course.location}">praha centrum</td>
+                                <td th:text="${course.startTime}">11:11</td>
+                                <td th:text="${course.endTime}">11:11</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <div id="attended" class="third">
+                    <h2>Absolvované kurzy</h2>
+                    <table>
+                        <thead>
+                            <th colspan="2">Datum</th>
+                            <th>Linie</th>
+                            <th>Název</th>
+                            <th>Místo</th>
+                            <th>Začátek</th>
+                            <th>Konec</th>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+        </main>
+        
+    </body>
+</html>
