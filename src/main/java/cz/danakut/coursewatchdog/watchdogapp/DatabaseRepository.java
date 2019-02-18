@@ -2,7 +2,6 @@ package cz.danakut.coursewatchdog.watchdogapp;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,14 +10,12 @@ public class DatabaseRepository implements CourseRepository {
     private static String dbUrl = "jdbc:mariadb://localhost:3306/hackathon";
     private static String user = "jetidea";
     private static String pass = "ideapass";
-    private static String selectString = "SELECT id FROM courses WHERE name = ? and startDate = ? and location = ?";
 
     Connection conn;
     PreparedStatement findStatement;
 
     public DatabaseRepository() throws SQLException {
         conn = DriverManager.getConnection(dbUrl, user, pass);
-
     }
 
     @Override
@@ -67,16 +64,14 @@ public class DatabaseRepository implements CourseRepository {
         course.type = CourseType.WORKSHOP;
         course.startDate = results.getDate("startDate");
         course.endDate = results.getDate("endDate");
-        course.startTime = results.getTime("startTime");
-        course.endTime = results.getTime("endTime");
+        course.startTime = results.getString("startTime");
+        course.endTime = results.getString("endTime");
         course.topic = results.getString("topic");
         course.knowledgeLevel = results.getInt("knowledgeLevel");
         course.name = results.getString("name");
         course.status = RegistrationStatus.OTEVRENA;
-        course.location = results.getString("location");
-        course.instructor = results.getString("instructor");
+        course.quickLocation = results.getString("quickLocation");
         course.link = results.getString("link");
-        course.description = results.getString("description");
         course.lastUpdate = results.getTimestamp("lastUpdate");
         return course;
 

@@ -14,76 +14,116 @@
     </head>
     <body>
         <main>
-            <div class="gridcontainer">
+            <div id="container">
 
-                <div id="profile">
-                    <p>Here is the profile.</p>
+                <div id="left">
 
-                </div>
+                    <div id="appname">
+                        <div class="image">
+                            <img src="../static/images/dog6.png" th:src="${'images/dog6.png'}">
+                        </div>
+                        <h1>Course Watchdog</h1>
+                    </div>
 
-                <div id="alarm" class="third">
-                    <h2>Nastavená upozornění</h2>
-                    <table>
-                        <thead>
-                            <th>Hlídám</th>
-                            <th>Nalezeno</th>
-                            <th>Stav registrace</th>
-                        </thead>
-                        <tbody>
 
-                        </tbody>
-                    </table>
 
-                </div>
 
-                <div id="events" class="third">
-                    <h2>Nadcházející kurzy</h2>
-                    <table>
-                        <thead>
-                            <th colspan="2">Datum</th>
-                            <th>Linie</th>
-                            <th>Název</th>
-                            <th>Místo</th>
-                            <th>Začátek</th>
-                            <th>Konec</th>
-                        </thead>
-                        <tbody>
-                            <tr th:each="course : ${courseList}">
-                                <td class="date" th:text="${course.startDate}">11.11.1111</td>
-                                <td class="date" th:text="${course.endDate}"></td>
-                                <td th:text="${course.topic}">jsem originál</td>
-                                <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
-                                <td th:text="${course.location}">praha centrum</td>
-                                <td th:text="${course.startTime}">11:11</td>
-                                <td th:text="${course.endTime}">11:11</td>
-                            </tr>
 
-                        </tbody>
-                    </table>
+                    <div id="navbuttons">
+                        <div data-board="alarms" onclick="showBoard(event)">Upozornění</div>
+                        <div data-board="events" onclick="showBoard(event)">Probíhající kurzy</div>
+                        <div data-board="attended" onclick="showBoard(event)">Moje historie</div>
+                    </div>
+
+                    <div id="profile">
+                        <h2>Profil uživatele</h2>
+                        <p>Uživatel: Testtest@test.cz</p>
+                        <p>Nová upozornění: 4</p>
+                        <button class="button red">Upravit profil</button>
+                    </div>
+
+
 
                 </div>
 
-                <div id="attended" class="third">
-                    <h2>Absolvované kurzy</h2>
-                    <table>
-                        <thead>
-                            <th colspan="2">Datum</th>
-                            <th>Linie</th>
-                            <th>Název</th>
-                            <th>Místo</th>
-                            <th>Začátek</th>
-                            <th>Konec</th>
-                        </thead>
-                        <tbody>
+                <div id="right">
 
-                        </tbody>
-                    </table>
+                    <div id="alarms" class="board">
+                        <h2>Nastavená upozornění</h2>
+                        <table>
+                            <thead>
+                                <th>Hlídám</th>
+                                <th>Nalezeno</th>
+                                <th>Stav registrace</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="events" class="board unfolded">
+                        <h2>Nadcházející kurzy</h2>
+                        <table class="eventtable">
+                            <thead>
+                                <tr>
+                                    <th rowspan="2" id="datefrom_head">Datum od-do</th>
+                                    <th id="type_head" rowspan="2">Linie</th>
+                                    <th id="name_head" rowspan="2">Název</th>
+                                    <th id="location_head" rowspan="2">Místo</th>
+                                    <th id="starttime_head">Začátek</th>
+                                </tr>
+                                <tr>
+                                    <th id="endtime_head">Konec</th>
+                                </tr>
+
+
+                            </thead>
+                            <tbody>
+                                <th:block th:each="course : ${courseList}">
+                                    <tr >
+                                        <td class="date" th:text="${#dates.format(course.startDate, 'dd.MM.yyyy')}">11.11.1111</td>
+                                        <td rowspan="2" class="bottom_border" th:text="${course.topic}">jsem originál</td>
+                                        <td rowspan="2" class="bottom_border" th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
+                                        <td rowspan="2" class="bottom_border" th:text="${course.quickLocation}">praha centrum</td>
+                                        <td th:text="${course.startTime}">11:11</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="date bottom_border" th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</td>
+                                        <!--<td th:text="${course.endDate != null} ? ${#dates.format(course.endDate, 'dd.MM.yyyy')} : '=' " class="date">11.11.1111</td>-->
+                                        <!--<td th:if="${course.endDate == null}" class="date" th:text="-">11.11.1111</td>-->
+                                        <!--<td th:text="${course.endTime}">11:11</td>-->
+                                        <td class="bottom_border" th:text="${course.endTime}">11:11</td>
+                                    </tr>
+                                </th:block>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div id="attended" class="board">
+                        <h2>Absolvované kurzy</h2>
+                        <table>
+                            <thead>
+                                <th colspan="2">Datum</th>
+                                <th>Linie</th>
+                                <th>Název</th>
+                                <th>Místo</th>
+                                <th>Začátek</th>
+                                <th>Konec</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
 
             </div>
 
         </main>
+
+        <script src="../static/scripts/dashboard.js" th:src="${'scripts/dashboard.js'}"></script>
         
     </body>
 </html>

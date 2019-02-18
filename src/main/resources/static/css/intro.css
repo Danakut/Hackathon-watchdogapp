@@ -109,6 +109,7 @@ main {
 }
 
 form {
+    margin-bottom: 0.5rem;
     min-width: 18rem;
     width: 50%;
 }
@@ -118,7 +119,6 @@ form {
     padding: 1rem;
     background: rgba(171, 149, 175, 0.8);
     border-radius: 3px;
-
 }
 
 .formtable .heading {

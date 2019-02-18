@@ -7,54 +7,180 @@
     font-weight: bold;
 }
 
-main {
-    min-height: 100vh;
-    color: #fff9ff;
+body {
     background: #000040;
+}
+
+main {
+    color: #fff9ff;
     font-family: 'Exo 2', sans-serif;
 }
 
-.gridcontainer {
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 3fr;
-    grid-template-areas:
-            "profile alarm"
-            "attended events";
-    justify-items: stretch;
+#container {
+    display: flex;
+    justify-content: center;
     align-items: stretch;
+    width: 100%;
+    height: 100%;
+}
+
+#left {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 2rem 1rem 2rem 2rem;
+    min-width: 310px;
+    width: 25%;
+    height: 100vh;
+}
+
+#appname {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+    min-height: 6em;
+    padding: 10px 30px;
+    color: #e8c1f9;
+    background-image: linear-gradient(to right, rgba(251, 1, 3, 0.8) , rgba(249, 19, 86, 0.8), rgba(251, 107, 166, 0.8), rgba(0, 0, 64, 0.8));
+    border-radius: 3px;
 
 }
 
-.third {
-    border-top: 1px solid #ab95af;
-    border-bottom: 1px solid #ab95af;
+#appname .image {
+    margin-right: 2px;
 }
 
-.date {
-    min-width: 10em;
+#appname .image img {
+    max-height: 90px;
+    margin-right: 8px;
+}
+
+#appname h1 {
+    width: 5em;
+    font-family: 'Righteous', cursive;
+    font-size: 48px;
+    line-height: 48px;
 }
 
 #profile {
-    grid-area: profile;
     width: 100%;
-    background: red;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    color: #000040;
+    background: rgba(171, 149, 175, 0.8);
+    border-radius: 3px;
 }
 
-#alarm {
-    grid-area: alarm;
+#profile h2 {
+    margin-bottom: 1rem;
+}
+
+#profile p:last-of-type {
+    margin-bottom: 1rem;
+}
+
+.button {
     width: 100%;
-    background: yellow;
+    margin-top: 0.5rem;
+    padding: 10px;
+    color: #fff9ff;
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 3px;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.3)0%, rgba(0, 0, 0, 0.2) 40%, rgba(0, 0, 0, 0.05) 60%, rgba(0, 0, 0, 0) 100%);
+    border-right: 1px solid rgba(0, 0, 0, 0.2) ;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(0, 0, 0, 0.2) ;
+    transition: all 0.3ms;
+}
+
+.red {
+    background-color: rgb(251,1,3);
+    border-top: 1px solid rgb(251, 1, 3);
+}
+
+.button:active {
+    transform: translate(1px, 1px);
+    color: #f5eff5;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4)0%, rgba(0, 0, 0, 0.3) 40%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0.1) 100%);
+}
+
+#navbuttons div {
+    width: 100%;
+    padding: 1rem 1rem 1rem 0;
+    color: #ab95af;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid #ab95af;
+}
+
+#navbuttons div:hover {
+    color: #fff9ff;
+    background: rgba(171, 149, 175, 0.5);
+}
+
+#right {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 1rem 1rem 0;
+    width: 75%;
+}
+
+.board {
+    display: none;
+    /*border: 1px solid #ab95af;*/
+    border-radius: 3px;
+}
+
+.unfolded {
+    display: block;
+
+}
+
+#alarms {
+
 }
 
 #events {
-    grid-area: events;
+    padding: 1rem;
+
+}
+
+.eventtable {
     width: 100%;
-    background: green;
+    border: 3px solid #ab95af;
+    border-radius: 3px;
+}
+
+.eventtable th, td{
+    padding: 0.2rem 1rem;
+    text-align: left;
+    vertical-align: top;
+
+}
+
+.eventtable th {
+    color: #000040;
+    background: rgba(171, 149, 175, 1);
+}
+
+.bottom_border {
+    border-bottom: 1px solid #ab95af;
+
+}
+
+#datefrom_head, #dateto_head, #type_head, #name_head, #location_head, #starttime_head, #endtime_head {
+    /*padding-left: 0;*/
+}
+
+#datefrom_head, #dateto_head, #starttime_head, #endtime_head {
+    min-width: 8em;
 }
 
 #attended {
-    grid-area: attended;
-    width: 100%;
-    background: blue;
+
 }

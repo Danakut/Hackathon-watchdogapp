@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -31,7 +32,8 @@ public class MainController {
     public ModelAndView showDashboard() {
         ModelAndView moavi = new ModelAndView("dashboard");
         try {
-            moavi.addObject("courseList", repository.findUpcomingCourses());
+            List<Course> courseList = repository.findUpcomingCourses();
+            moavi.addObject("courseList", courseList);
         } catch (SQLException e) {
             e.printStackTrace();
             return new ModelAndView("redirect:/database-error");

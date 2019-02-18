@@ -1,22 +1,23 @@
 package cz.danakut.coursewatchdog.watchdogapp;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.List;
 
 public class Course {
     int id;
     CourseType type;
     Date startDate;
     Date endDate;
-    Time startTime;
-    Time endTime;
+    String startTime;
+    String endTime;
     String topic;
     int knowledgeLevel;
     String name;
     RegistrationStatus status;
-    String location;
-    String instructor;
+    String quickLocation;
+    Location location;
+    List<String> instructors;
     String link;
     String description;
     Timestamp lastUpdate;
@@ -27,6 +28,14 @@ public class Course {
 
     @Override
     public String toString() {
+        String result = id + "|" + type + "|" + startDate + "|" + endDate + "|" + startTime + "|" + endTime + "|" + topic + "|" +
+                knowledgeLevel + "|" + name + "|" + status + "|" + quickLocation + "|" + location + "|" + instructors + "|" +
+                link + "|" + description + "|" + lastUpdate + "||";
+
+        return result;
+    }
+
+    public String toLongString() {
         String result = topic + ", úroveň " + knowledgeLevel + ", název akce: ";
 
         result += name + "\n";
@@ -41,9 +50,9 @@ public class Course {
             result += "čas: " + startTime + " - " + endTime + "\n";
         }
 
-        result += "místo konání: " + location + ", ";
+        result += "místo konání: " + quickLocation + ", ";
 
-        result += "lektor: " + instructor + "\n";
+        result += "lektor: " + instructors + "\n";
 
         result += "odkaz na web: " + link + "\n";
 
@@ -67,7 +76,7 @@ public class Course {
         if ((this.name.equals(thatObj.name))
                 && this.startDate.equals(thatObj.startDate)
                 && this.startTime.equals(thatObj.startTime)
-                && this.location.equals(thatObj.location)) {
+                && this.quickLocation.equals(thatObj.quickLocation)) {
             return true;
         }
 
@@ -78,7 +87,7 @@ public class Course {
     public int hashCode() {
         int nameHash = name.hashCode();
         int dateHash = startDate.hashCode();
-        int locationHash = location.hashCode();
+        int locationHash = quickLocation.hashCode();
         return nameHash * dateHash * locationHash;
     }
 
@@ -86,119 +95,63 @@ public class Course {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public CourseType getType() {
         return type;
-    }
-
-    public void setType(CourseType type) {
-        this.type = type;
     }
 
     public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-
     public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    public Time getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
-        this.startTime = startTime;
-    }
-
-    public Time getEndTime() {
+    public String getEndTime() {
         return endTime;
-    }
-
-    public void setEndTime(Time endTime) {
-        this.endTime = endTime;
     }
 
     public String getTopic() {
         return topic;
     }
 
-    public void setTopic(String topic) {
-        this.topic = topic;
-    }
-
     public int getKnowledgeLevel() {
         return knowledgeLevel;
-    }
-
-    public void setKnowledgeLevel(int knowledgeLevel) {
-        this.knowledgeLevel = knowledgeLevel;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public RegistrationStatus getStatus() {
         return status;
     }
 
-    public void setStatus(RegistrationStatus status) {
-        this.status = status;
+    public String getQuickLocation() {
+        return quickLocation;
     }
 
-    public String getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public void setInstructor(String instructor) {
-        this.instructor = instructor;
+    public List<String> getInstructors() {
+        return instructors;
     }
 
     public String getLink() {
         return link;
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
-
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Timestamp getLastUpdate() {
         return lastUpdate;
-    }
-
-    public void setLastUpdate(Timestamp lastUpdate) {
-        this.lastUpdate = lastUpdate;
     }
 }
