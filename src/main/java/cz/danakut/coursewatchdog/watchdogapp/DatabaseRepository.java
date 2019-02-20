@@ -64,8 +64,18 @@ public class DatabaseRepository implements CourseRepository {
         course.type = CourseType.WORKSHOP;
         course.startDate = results.getDate("startDate");
         course.endDate = results.getDate("endDate");
-        course.startTime = results.getString("startTime");
-        course.endTime = results.getString("endTime");
+        String sTime = results.getString("startTime");
+        if (sTime == null) {
+            course.startTime = "";
+        } else {
+            course.startTime = sTime.substring(0,5);
+        }
+        String eTime = results.getString("endTime");
+        if (eTime == null) {
+            course.endTime = "";
+        } else {
+            course.endTime = eTime.substring(0,5);
+        }
         course.topic = results.getString("topic");
         course.knowledgeLevel = results.getInt("knowledgeLevel");
         course.name = results.getString("name");

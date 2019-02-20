@@ -132,13 +132,11 @@ main {
 
 .board {
     display: none;
-    /*border: 1px solid #ab95af;*/
     border-radius: 3px;
 }
 
 .unfolded {
     display: block;
-
 }
 
 #alarms {
@@ -147,7 +145,6 @@ main {
 
 #events {
     padding: 1rem;
-
 }
 
 .eventtable {
@@ -171,10 +168,6 @@ main {
 .bottom_border {
     border-bottom: 1px solid #ab95af;
 
-}
-
-#datefrom_head, #dateto_head, #type_head, #name_head, #location_head, #starttime_head, #endtime_head {
-    /*padding-left: 0;*/
 }
 
 #datefrom_head, #dateto_head, #starttime_head, #endtime_head {

@@ -72,6 +72,7 @@
                                     <th id="name_head" rowspan="2">Název</th>
                                     <th id="location_head" rowspan="2">Místo</th>
                                     <th id="starttime_head">Začátek</th>
+                                    <th id="link_head" rowspan="2">Odkaz</th>
                                 </tr>
                                 <tr>
                                     <th id="endtime_head">Konec</th>
@@ -87,6 +88,7 @@
                                         <td rowspan="2" class="bottom_border" th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
                                         <td rowspan="2" class="bottom_border" th:text="${course.quickLocation}">praha centrum</td>
                                         <td th:text="${course.startTime}">11:11</td>
+                                        <td rowspan="2" class="bottom_border"><a href="#" th:href="${course.link}">link</a></td>
                                     </tr>
                                     <tr>
                                         <td class="date bottom_border" th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</td>
