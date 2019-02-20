@@ -10,6 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700&amp;subset=latin-ext" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Course Watchdog - dashboard</title>
     </head>
     <body>
@@ -67,7 +68,7 @@
                         <table class="eventtable">
                             <thead>
                                 <tr>
-                                    <th rowspan="2" id="datefrom_head">Datum od-do</th>
+                                    <th rowspan="2" id="datefrom_head">Datum <br> od-do</th>
                                     <th id="type_head" rowspan="2">Linie</th>
                                     <th id="name_head" rowspan="2">Název</th>
                                     <th id="location_head" rowspan="2">Místo</th>
@@ -88,7 +89,9 @@
                                         <td rowspan="2" class="bottom_border" th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
                                         <td rowspan="2" class="bottom_border" th:text="${course.quickLocation}">praha centrum</td>
                                         <td th:text="${course.startTime}">11:11</td>
-                                        <td rowspan="2" class="bottom_border"><a href="#" th:href="${course.link}">link</a></td>
+                                        <td rowspan="2" class="bottom_border icon"><a href="#" th:href="${course.link}" target="_blank"><i class="material-icons md-36">
+                                            open_in_new
+                                        </i></a></td>
                                     </tr>
                                     <tr>
                                         <td class="date bottom_border" th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</td>
