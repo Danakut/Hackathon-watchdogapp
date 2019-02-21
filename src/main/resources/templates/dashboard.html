@@ -68,39 +68,25 @@
                         <table class="eventtable">
                             <thead>
                                 <tr>
-                                    <th rowspan="2" id="datefrom_head">Datum <br> od-do</th>
-                                    <th id="type_head" rowspan="2">Linie</th>
-                                    <th id="name_head" rowspan="2">Název</th>
-                                    <th id="location_head" rowspan="2">Místo</th>
-                                    <th id="starttime_head">Začátek</th>
-                                    <th id="link_head" rowspan="2">Odkaz</th>
+                                    <th id="date_head">MMMMM<br>od-do</th>
+                                    <th id="type_head">Linie</th>
+                                    <th id="name_head">Název</th>
+                                    <th id="location_head">Místo</th>
+                                    <th id="time_head">Začátek<br>Konec</th>
+                                    <th id="link_head">Odkaz</th>
                                 </tr>
-                                <tr>
-                                    <th id="endtime_head">Konec</th>
-                                </tr>
-
-
                             </thead>
                             <tbody>
-                                <th:block th:each="course : ${courseList}">
-                                    <tr >
-                                        <td class="date" th:text="${#dates.format(course.startDate, 'dd.MM.yyyy')}">11.11.1111</td>
-                                        <td rowspan="2" class="bottom_border" th:text="${course.topic}">jsem originál</td>
-                                        <td rowspan="2" class="bottom_border" th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
-                                        <td rowspan="2" class="bottom_border" th:text="${course.quickLocation}">praha centrum</td>
-                                        <td th:text="${course.startTime}">11:11</td>
-                                        <td rowspan="2" class="bottom_border icon"><a href="#" th:href="${course.link}" target="_blank"><i class="material-icons md-36">
-                                            open_in_new
-                                        </i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="date bottom_border" th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</td>
-                                        <!--<td th:text="${course.endDate != null} ? ${#dates.format(course.endDate, 'dd.MM.yyyy')} : '=' " class="date">11.11.1111</td>-->
-                                        <!--<td th:if="${course.endDate == null}" class="date" th:text="-">11.11.1111</td>-->
-                                        <!--<td th:text="${course.endTime}">11:11</td>-->
-                                        <td class="bottom_border" th:text="${course.endTime}">11:11</td>
-                                    </tr>
-                                </th:block>
+                                <tr th:each="course : ${courseList}" >
+                                    <td class="date" th:text="${#dates.format(course.startDate, 'dd.MM.yyyy') + ' ' + #dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111<br>11.11.1111</td>
+                                    <td th:text="${course.topic}">jsem originál</td>
+                                    <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
+                                    <td th:text="${course.quickLocation}">praha centrum</td>
+                                    <td th:text="${course.startTime + ' ' + course.endTime}">11:11<br>11:11</td>
+                                    <td class="icon"><a href="#" th:href="${course.link}" target="_blank"><i class="material-icons md-36">
+                                        open_in_new
+                                    </i></a></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

@@ -139,10 +139,6 @@ main {
     display: block;
 }
 
-#alarms {
-
-}
-
 #events {
     padding: 1rem;
 }
@@ -160,21 +156,25 @@ main {
 }
 
 .eventtable th {
+    overflow: hidden;
     color: #000040;
     background: rgba(171, 149, 175, 1);
 }
 
-.bottom_border {
+.eventtable td {
     border-bottom: 1px solid #ab95af;
-
 }
 
-#datefrom_head, #dateto_head {
-    min-width: 3em;
-    max-width: 3em;
+.eventtable tr:hover {
+    background-color: #e8c1f9;
 }
 
-#starttime_head, #endtime_head {
+#date_head {
+    min-width: 5rem;
+    max-width: 5rem;
+}
+
+#time_head {
     min-width: 5em;
     max-width: 5em;
 }
