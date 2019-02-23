@@ -18,17 +18,12 @@
             <div id="container">
 
                 <div id="left">
-
                     <div id="appname">
                         <div class="image">
                             <img src="../static/images/dog6.png" th:src="${'images/dog6.png'}">
                         </div>
                         <h1>Course Watchdog</h1>
                     </div>
-
-
-
-
 
                     <div id="navbuttons">
                         <div data-board="alarms" onclick="showBoard(event)">Upozornění</div>
@@ -42,13 +37,9 @@
                         <p>Nová upozornění: 4</p>
                         <button class="button red">Upravit profil</button>
                     </div>
-
-
-
                 </div>
 
                 <div id="right">
-
                     <div id="alarms" class="board">
                         <h2>Nastavená upozornění</h2>
                         <table>
@@ -68,7 +59,7 @@
                         <table class="eventtable">
                             <thead>
                                 <tr>
-                                    <th id="date_head">MMMMM<br>od-do</th>
+                                    <th id="date_head">Datum<br>od-do</th>
                                     <th id="type_head">Linie</th>
                                     <th id="name_head">Název</th>
                                     <th id="location_head">Místo</th>
@@ -78,7 +69,8 @@
                             </thead>
                             <tbody>
                                 <tr th:each="course : ${courseList}" >
-                                    <td class="date" th:text="${#dates.format(course.startDate, 'dd.MM.yyyy') + ' ' + #dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111<br>11.11.1111</td>
+                                    <td class="date"> <span th:text="${#dates.format(course.startDate, 'dd.MM.yyyy')}">11.11.1111</span>
+                                        <span th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</span></td>
                                     <td th:text="${course.topic}">jsem originál</td>
                                     <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
                                     <td th:text="${course.quickLocation}">praha centrum</td>

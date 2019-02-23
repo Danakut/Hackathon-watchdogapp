@@ -66,13 +66,13 @@ public class DatabaseRepository implements CourseRepository {
         course.endDate = results.getDate("endDate");
         String sTime = results.getString("startTime");
         if (sTime == null) {
-            course.startTime = "";
+            course.startTime = null;
         } else {
             course.startTime = sTime.substring(0,5);
         }
         String eTime = results.getString("endTime");
         if (eTime == null) {
-            course.endTime = "";
+            course.endTime = null;
         } else {
             course.endTime = eTime.substring(0,5);
         }
