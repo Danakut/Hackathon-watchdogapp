@@ -69,12 +69,17 @@
                             </thead>
                             <tbody>
                                 <tr th:each="course : ${courseList}" >
-                                    <td class="date"> <span th:text="${#dates.format(course.startDate, 'dd.MM.yyyy')}">11.11.1111</span>
-                                        <span th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</span></td>
+                                    <td>
+                                        <span th:text="${#dates.format(course.startDate, 'dd.MM.yyyy')}">11.11.1111</span>
+                                        <span th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</span>
+                                    </td>
                                     <td th:text="${course.topic}">jsem originál</td>
                                     <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
                                     <td th:text="${course.quickLocation}">praha centrum</td>
-                                    <td th:text="${course.startTime + ' ' + course.endTime}">11:11<br>11:11</td>
+                                    <td>
+                                        <span th:text="${course.startTime}">11:11</span>
+                                        <span th:text="${course.endTime}">11:11</span>
+                                    </td>
                                     <td class="icon"><a href="#" th:href="${course.link}" target="_blank"><i class="material-icons md-36">
                                         open_in_new
                                     </i></a></td>
