@@ -1,5 +1,6 @@
 package cz.danakut.coursewatchdog.watchdogapp;
 
+import java.lang.instrument.Instrumentation;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +13,6 @@ public class DatabaseRepository implements CourseRepository {
     private static String pass = "ideapass";
 
     Connection conn;
-    PreparedStatement findStatement;
 
     public DatabaseRepository() throws SQLException {
         conn = DriverManager.getConnection(dbUrl, user, pass);
@@ -20,20 +20,21 @@ public class DatabaseRepository implements CourseRepository {
 
     @Override
     public Course findCourse(int id) throws SQLException {
-        findStatement = conn.prepareStatement("SELECT * FROM courses WHERE id = ?");
+        PreparedStatement findStatement = conn.prepareStatement("SELECT * FROM courses WHERE id = ?");
         findStatement.setInt(1, id);
         ResultSet results = findStatement.executeQuery();
         Course course = null;
         if (results.next()) {
             course = mapDatabaseValuesToCourse(results);
         }
+        findStatement.close();
         return course;
     }
 
     @Override
     public List<Course> findAllCourses() throws SQLException {
         List<Course> list = new ArrayList<>();
-        findStatement = conn.prepareStatement("SELECT * FROM courses");
+        PreparedStatement findStatement = conn.prepareStatement("SELECT * FROM courses");
         ResultSet results = findStatement.executeQuery();
 
         while (results.next()) {
@@ -41,12 +42,14 @@ public class DatabaseRepository implements CourseRepository {
             list.add(course);
 
         }
+
+        findStatement.close();
         return list;
     }
 
     public List<Course> findUpcomingCourses() throws SQLException {
         List<Course> list = new ArrayList<>();
-        findStatement = conn.prepareStatement("SELECT * FROM courses WHERE startDate >= ? AND startDate < ?");
+        PreparedStatement findStatement = conn.prepareStatement("SELECT * FROM courses WHERE startDate >= ? AND startDate < ?");
         findStatement.setDate(1, Date.valueOf(LocalDate.now()));
         findStatement.setDate(2, Date.valueOf(getXMonthsFromNow(1)));
         ResultSet results = findStatement.executeQuery();
@@ -55,6 +58,7 @@ public class DatabaseRepository implements CourseRepository {
             list.add(course);
         }
 
+        findStatement.close();
         return list;
     }
 
@@ -85,9 +89,34 @@ public class DatabaseRepository implements CourseRepository {
         course.description = results.getString("description");
 
         List<String> instructorList = new ArrayList<>();
+        String instructorCourseQuery = "SELECT firstname, lastname  FROM coursesAndInstructors " +
+                "JOIN instructors ON coursesAndInstructors.instructorId = instructors.id " +
+                "WHERE courseId = ?;";
+        PreparedStatement instructorStatement = conn.prepareStatement(instructorCourseQuery);
+        instructorStatement.setInt(1, course.id);
+        ResultSet instructorResults = instructorStatement.executeQuery();
+        while (instructorResults.next()) {
+            String name = instructorResults.getString("firstname") + " " + instructorResults.getString("lastname");
+            instructorList.add(name);
+        }
+        instructorStatement.close();
         course.instructors = instructorList;
 
-        course.lastUpdate = results.getTimestamp("lastUpdate");
+        Location newLocation = new Location();
+        String locationQuery = "SELECT locations.name, locations.street, locations.city, locations.postalCode FROM courses JOIN locations " +
+                "ON courses.location = locations.id " +
+                "WHERE courses.id = ?;";
+        PreparedStatement locationStatement = conn.prepareStatement(locationQuery);
+        locationStatement.setInt(1, course.id);
+        ResultSet locationResults = locationStatement.executeQuery();
+        if (locationResults.next()) {
+            newLocation.name = locationResults.getString("name");
+            newLocation.street = locationResults.getString("street");
+            newLocation.city = locationResults.getString("city");
+            newLocation.postalCode = locationResults.getString("postalCode");
+        }
+        course.location = newLocation;
+
         return course;
 
     }

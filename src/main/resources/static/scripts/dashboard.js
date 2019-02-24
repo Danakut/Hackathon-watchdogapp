@@ -11,16 +11,16 @@ function highlightRow(event) {
     detailRow.classList.add("highlighted");
 }
 
+function revertHighlightRow(event) {
+    rowTouched.classList.remove("highlighted");
+    detailRow.classList.remove("highlighted");
+}
+
 function showRowDetail(event) {
     //only a cell is clicked upon, so we need its parent in order the get a whole row
     rowClicked = event.target.parentNode;
     detailRow = rowClicked.nextElementSibling;
 
     detailRow.classList.toggle("row_opened");
-
 }
 
-function revertHighlightRow(event) {
-    rowTouched.classList.remove("highlighted");
-    detailRow.classList.remove("highlighted");
-}

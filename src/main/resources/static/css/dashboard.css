@@ -227,15 +227,25 @@ main {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0.2rem 0.5rem;
+    padding-bottom: 0.5rem;
     transition: max-height 0.5s;
 }
 
+.detail h3 {
+    margin: 0.5rem 0 1rem 0;
+}
+
 .description {
-    max-width: 600px;
+    width: 50%;
+}
+
+.location {
+    width: 30%;
+    margin-left: 2rem;
 }
 
 .lecturers {
-    padding-left: 1rem;
+    margin-left: 2rem;
     min-width: 10rem;
+    width: 20%;
 }
