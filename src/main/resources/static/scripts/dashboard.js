@@ -1,38 +1,26 @@
-const alarms = document.getElementById("alarms");
-const events = document.getElementById("events");
-const attended = document.getElementById("attended");
+let rowTouched;
+let rowClicked;
+let detailRow;
 
-function showBoard(event) {
 
-    let boardClicked = event.target;
-    let boardName = boardClicked.dataset.board;
+function highlightRow(event) {
+    rowTouched = event.target;
+    detailRow = rowTouched.nextElementSibling;
 
-    if (alarms.classList.contains("unfolded")) {
-        alarms.classList.remove("unfolded");
-    }
-    if (events.classList.contains("unfolded")) {
-        events.classList.remove("unfolded");
-    }
-    if (attended.classList.contains("unfolded")) {
-        attended.classList.remove("unfolded");
-    }
+    rowTouched.classList.add("highlighted");
+    detailRow.classList.add("highlighted");
+}
 
-    if (boardName === "alarms") {
-        events.classList.remove("unfolded");
-        attended.classList.remove("unfolded");
-        alarms.classList.add("unfolded");
-    }
+function showRowDetail(event) {
+    //only a cell is clicked upon, so we need its parent in order the get a whole row
+    rowClicked = event.target.parentNode;
+    detailRow = rowClicked.nextElementSibling;
 
-    if (boardName === "events") {
-        alarms.classList.remove("unfolded");
-        attended.classList.remove("unfolded");
-        events.classList.add("unfolded");
-    }
+    detailRow.classList.toggle("row_opened");
 
-    if (boardName === "attended") {
-        alarms.classList.remove("unfolded");
-        events.classList.remove("unfolded");
-        attended.classList.add("unfolded");
-    }
+}
 
+function revertHighlightRow(event) {
+    rowTouched.classList.remove("highlighted");
+    detailRow.classList.remove("highlighted");
 }

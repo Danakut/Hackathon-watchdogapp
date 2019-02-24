@@ -26,9 +26,9 @@
                     </div>
 
                     <div id="navbuttons">
-                        <div data-board="alarms" onclick="showBoard(event)">Upozornění</div>
-                        <div data-board="events" onclick="showBoard(event)">Probíhající kurzy</div>
-                        <div data-board="attended" onclick="showBoard(event)">Moje historie</div>
+                        <div>Upozornění</div>
+                        <div>Vypsané kurzy</div>
+                        <div>Moje historie</div>
                     </div>
 
                     <div id="profile">
@@ -40,50 +40,55 @@
                 </div>
 
                 <div id="right">
-                    <div id="alarms" class="board">
-                        <h2>Nastavená upozornění</h2>
-                        <table>
-                            <thead>
-                                <th>Hlídám</th>
-                                <th>Nalezeno</th>
-                                <th>Stav registrace</th>
-                            </thead>
-                            <tbody>
 
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div id="events" class="board unfolded">
-                        <h2>Nadcházející kurzy</h2>
+                    <div id="events" class="board">
+                        <h1>VYPSANÉ KURZY</h1>
                         <table class="eventtable">
                             <thead>
-                                <tr>
+                                <tr class="regularrow">
                                     <th id="date_head">Datum<br>od-do</th>
                                     <th id="type_head">Linie</th>
                                     <th id="name_head">Název</th>
                                     <th id="location_head">Místo</th>
                                     <th id="time_head">Začátek<br>Konec</th>
-                                    <th id="link_head">Odkaz</th>
+                                    <th id="link_head">Odkaz na web</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="course : ${courseList}" >
-                                    <td>
-                                        <span th:text="${#dates.format(course.startDate, 'dd.MM.yyyy')}">11.11.1111</span>
-                                        <span th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</span>
-                                    </td>
-                                    <td th:text="${course.topic}">jsem originál</td>
-                                    <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
-                                    <td th:text="${course.quickLocation}">praha centrum</td>
-                                    <td>
-                                        <span th:text="${course.startTime}">11:11</span>
-                                        <span th:text="${course.endTime}">11:11</span>
-                                    </td>
-                                    <td class="icon"><a href="#" th:href="${course.link}" target="_blank"><i class="material-icons md-36">
-                                        open_in_new
-                                    </i></a></td>
-                                </tr>
+                                <th:block th:each="course : ${courseList}">
+                                    <tr class="regularrow"  onclick="showRowDetail(event)" onmouseenter="highlightRow(event)" onmouseleave="revertHighlightRow(event)">
+                                        <td>
+                                            <span th:text="${#dates.format(course.startDate, 'dd.MM.yyyy')}">11.11.1111</span>
+                                            <span th:text="${#dates.format(course.endDate, 'dd.MM.yyyy')}">11.11.1111</span>
+                                        </td>
+                                        <td th:text="${course.topic}">jsem originál</td>
+                                        <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
+                                        <td th:text="${course.quickLocation}">praha centrum</td>
+                                        <td>
+                                            <span th:text="${course.startTime}">11:11</span>
+                                            <span th:text="${course.endTime}">11:11</span>
+                                        </td>
+                                        <td class="icon"><a href="#" th:href="${course.link}" target="_blank"><i class="material-icons md-36">
+                                            open_in_new
+                                        </i></a></td>
+                                    </tr>
+                                    <tr class="detailrow">
+                                        <td class="detailcell" colspan="6">
+                                            <div class="detail">
+                                                <div class="description">
+                                                    <h3>O akci:</h3>
+                                                    <span th:text="${course.description}">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur dolor dolores doloribus excepturi ipsum iure, officiis quasi ullam? Ad dignissimos, dolore error est excepturi facere ipsam iste iure repellat tenetur.
+                                                </div>
+                                                <div class="lecturers">
+                                                    <h3>Lektoři:</h3>
+                                                    <ul th:each="instructor : ${course.instructors}">
+                                                        <li th:text="${instructor}">dksfjalskd</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </th:block>
                             </tbody>
                         </table>
                     </div>
@@ -105,6 +110,20 @@
                         </table>
                     </div>
 
+                    <div id="alarms" class="board">
+                        <h2>Nastavená upozornění</h2>
+                        <table>
+                            <thead>
+                                <th>Hlídám</th>
+                                <th>Nalezeno</th>
+                                <th>Stav registrace</th>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
 
             </div>
@@ -112,6 +131,5 @@
         </main>
 
         <script src="../static/scripts/dashboard.js" th:src="${'scripts/dashboard.js'}"></script>
-        
     </body>
 </html>

@@ -48,7 +48,7 @@ public class DatabaseRepository implements CourseRepository {
         List<Course> list = new ArrayList<>();
         findStatement = conn.prepareStatement("SELECT * FROM courses WHERE startDate >= ? AND startDate < ?");
         findStatement.setDate(1, Date.valueOf(LocalDate.now()));
-        findStatement.setDate(2, Date.valueOf(getXMonthsFromNow(2)));
+        findStatement.setDate(2, Date.valueOf(getXMonthsFromNow(1)));
         ResultSet results = findStatement.executeQuery();
         while (results.next()) {
             Course course = mapDatabaseValuesToCourse(results);
@@ -82,6 +82,11 @@ public class DatabaseRepository implements CourseRepository {
         course.status = RegistrationStatus.OTEVRENA;
         course.quickLocation = results.getString("quickLocation");
         course.link = results.getString("link");
+        course.description = results.getString("description");
+
+        List<String> instructorList = new ArrayList<>();
+        course.instructors = instructorList;
+
         course.lastUpdate = results.getTimestamp("lastUpdate");
         return course;
 
