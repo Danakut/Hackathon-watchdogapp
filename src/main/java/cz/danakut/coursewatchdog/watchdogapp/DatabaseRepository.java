@@ -63,7 +63,29 @@ public class DatabaseRepository {
     private Course mapDatabaseValuesToCourse(ResultSet results) throws SQLException {
         Course course = new Course();
         course.setId(results.getInt("id"));
-        course.setType(CourseType.WORKSHOP);
+
+        CourseType type;
+        switch (results.getString("type")) {
+            case "workshop" :
+                type = CourseType.WORKSHOP;
+                break;
+            case "dlouhodoby" :
+                type = CourseType.DLOUHODOBY;
+                break;
+            case "intenzivni":
+                type = CourseType.INTENZIVNI;
+                break;
+            case "akce":
+                type = CourseType.AKCE;
+                break;
+            case "neurceno":
+                type = CourseType.NEURCENO;
+                break;
+            default:
+                type = CourseType.NEURCENO;
+        }
+        course.setType(type);
+
         course.setStartDate(results.getDate("startDate"));
         course.setEndDate(results.getDate("endDate"));
         String sTime = results.getString("startTime");
