@@ -7,6 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
 import java.util.List;
+import cz.danakut.fill_a_db.Course;
 
 @Controller
 public class MainController {
