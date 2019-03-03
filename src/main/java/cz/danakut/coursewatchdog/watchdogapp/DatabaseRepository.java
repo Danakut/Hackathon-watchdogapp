@@ -103,7 +103,29 @@ public class DatabaseRepository {
         course.setTopic(results.getString("topic"));
         course.setKnowledgeLevel(results.getInt("knowledgeLevel"));
         course.setName(results.getString("name"));
-        course.setStatus(RegistrationStatus.OTEVRENA);
+
+        RegistrationStatus status;
+        switch (results.getString("status")) {
+            case "otevrena" :
+                status = RegistrationStatus.OTEVRENA;
+                break;
+            case "uzavrena" :
+                status = RegistrationStatus.UZAVRENA;
+                break;
+            case "pozdeji":
+                status = RegistrationStatus.POZDEJI;
+                break;
+            case "netreba":
+                status = RegistrationStatus.NETREBA;
+                break;
+            case "nezjisteno":
+                status = RegistrationStatus.NEZJISTENO;
+                break;
+            default:
+                status = RegistrationStatus.NEZJISTENO;
+        }
+        course.setStatus(status);
+
         course.setQuickLocation(results.getString("quickLocation"));
         course.setLink(results.getString("link"));
         course.setDescription(results.getString("description"));
