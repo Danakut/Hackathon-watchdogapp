@@ -50,7 +50,8 @@
                                     <th id="type_head">Linie</th>
                                     <th id="name_head">Název</th>
                                     <th id="location_head">Místo</th>
-                                    <th id="time_head">Začátek<br>Konec</th>
+                                    <th id="registration_head">Registrace</th>
+                                    <!--<th id="time_head">Začátek<br>Konec</th>-->
                                     <th id="link_head">Odkaz na web</th>
                                 </tr>
                             </thead>
@@ -64,15 +65,33 @@
                                         <td th:text="${course.topic}">jsem originál</td>
                                         <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
                                         <td th:text="${course.quickLocation}">praha centrum</td>
-                                        <td>
-                                            <span th:text="${course.startTime}">11:11</span>
-                                            <span th:text="${course.endTime}">11:11</span>
+                                        <td th:switch="${course.status}">
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).OTEVRENA}">otevřena</span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).UZAVRENA}">ukončena</span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).POZDEJI}">bude později</span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NETREBA}">není třeba</span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NEZJISTENO}"></span>
+                                            <span th:case="*"></span>
                                         </td>
                                         <td class="icon"><a href="#" th:href="${course.link}" target="_blank"><i class="material-icons md-36">
                                             open_in_new
                                         </i></a></td>
                                     </tr>
-                                    <tr class="detailrow">
+                                    <tr class="detailrow row_opened">
+                                        <td colspan="6">
+                                            <div class="detail">
+                                                <div class="time">
+                                                    <h3>Čas</h3>
+                                                    <span>11:00 - 11:00</span>
+                                                </div>
+                                                <div class="address">
+                                                    <h3>Adresa:</h3>
+                                                    <span>dsflksdfksjdf, dkfjsdlfkj14, dfjkjefk 256874</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="detailrow row_opened">
                                         <td class="detailcell" colspan="6">
                                             <div class="detail">
                                                 <div class="description">
@@ -139,6 +158,6 @@
 
         </main>
 
-        <script src="../static/scripts/dashboard.js" th:src="${'scripts/dashboard.js'}"></script>
+        <!--<script src="../static/scripts/dashboard.js" th:src="${'scripts/dashboard.js'}"></script>-->
     </body>
 </html>

@@ -160,7 +160,6 @@ public class DatabaseRepository {
         course.setLocation(newLocation);
 
         return course;
-
     }
 
     private LocalDate getXMonthsFromNow(int x) {
@@ -173,11 +172,6 @@ public class DatabaseRepository {
             return today.plusMonths(x);
         }
     }
-
-
-
-
-
 }
 
 
