@@ -86,7 +86,10 @@
                                                 </div>
                                                 <div class="address">
                                                     <h3>Adresa:</h3>
-                                                    <span>dsflksdfksjdf, dkfjsdlfkj14, dfjkjefk 256874</span>
+                                                    <span th:text="${course.location.name + ', '}">Název instituce,</span>
+                                                    <span th:text="${course.location.street} ? ${course.location.street} + ', ' : '' ">Ulice,</span>
+                                                    <span th:text="${course.location.postalCode} ? ${course.location.postalCode} + ' ' : '' ">PSČ </span>
+                                                    <span th:text="${course.location.city}">město</span>
                                                 </div>
                                             </div>
                                         </td>
@@ -97,15 +100,6 @@
                                                 <div class="description">
                                                     <h3>O akci:</h3>
                                                     <span th:text="${course.description}">Popis kurzu.</span>
-                                                </div>
-                                                <div class="location">
-                                                    <h3>Adresa:</h3>
-                                                    <p th:text="${course.location.name}">název</p>
-                                                    <p th:text="${course.location.street}">ulice</p>
-                                                    <p>
-                                                        <span th:text="${course.location.postalCode}">psč</span>
-                                                        <span th:text="${course.location.city}">město,</span>
-                                                    </p>
                                                 </div>
                                                 <div class="lecturers">
                                                     <h3>Lektoři:</h3>
