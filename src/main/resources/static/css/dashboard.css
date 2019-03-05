@@ -183,6 +183,11 @@ main {
     width: 4em;
 }
 
+#registration_head {
+    min-width: 5em;
+    width: 8em;
+}
+
 #link_head {
     min-width: 5em;
     width: 5em;
@@ -204,14 +209,6 @@ main {
 
 .icon {
     text-align: center;
-}
-
-.detailrow {
-    display: none;
-}
-
-.row_opened {
-    display: table-row;
 }
 
 .detailrow td {

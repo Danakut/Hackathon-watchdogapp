@@ -67,22 +67,23 @@
                                         <td th:text="${course.quickLocation}">praha centrum</td>
                                         <td th:switch="${course.status}">
                                             <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).OTEVRENA}">otevřena</span>
-                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).UZAVRENA}">ukončena</span>
-                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).POZDEJI}">bude později</span>
-                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NETREBA}">není třeba</span>
-                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NEZJISTENO}"></span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).UZAVRENA}" th:text="ukončena"></span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).POZDEJI}" th:text="${'bude později'}"></span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NETREBA}" th:text="není třeba"></span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NEZJISTENO}" th:text=""></span>
                                             <span th:case="*"></span>
                                         </td>
                                         <td class="icon"><a href="#" th:href="${course.link}" target="_blank"><i class="material-icons md-36">
                                             open_in_new
                                         </i></a></td>
                                     </tr>
-                                    <tr class="detailrow row_opened">
+                                    <tr class="detailrow">
                                         <td colspan="6">
                                             <div class="detail">
                                                 <div class="time">
                                                     <h3>Čas</h3>
-                                                    <span>11:00 - 11:00</span>
+                                                    <span th:text="${course.startTime} ? ${course.startTime} + ' - ' : 'neurčeno' ">11:00 - </span>
+                                                    <span th:text="${course.endTime} ?: '' ">11:00</span>
                                                 </div>
                                                 <div class="address">
                                                     <h3>Adresa:</h3>
@@ -94,7 +95,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr class="detailrow row_opened">
+                                    <tr class="detailrow">
                                         <td class="detailcell" colspan="6">
                                             <div class="detail">
                                                 <div class="description">
