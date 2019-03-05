@@ -66,10 +66,10 @@
                                         <td th:text="${course.name}">nazev kurzu, treba neco s vektory</td>
                                         <td th:text="${course.quickLocation}">praha centrum</td>
                                         <td th:switch="${course.status}">
-                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).OTEVRENA}">otevřena</span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).OTEVRENA}" th:text="otevřena">otevřena</span>
                                             <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).UZAVRENA}" th:text="ukončena"></span>
                                             <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).POZDEJI}" th:text="${'bude později'}"></span>
-                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NETREBA}" th:text="není třeba"></span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NETREBA}" th:text="${'není třeba'}"></span>
                                             <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NEZJISTENO}" th:text=""></span>
                                             <span th:case="*"></span>
                                         </td>
@@ -85,6 +85,33 @@
                                                     <span th:text="${course.startTime} ? ${course.startTime} + ' - ' : 'neurčeno' ">11:00 - </span>
                                                     <span th:text="${course.endTime} ?: '' ">11:00</span>
                                                 </div>
+                                                <div class="coursetype" th:switch="${course.type}">
+                                                    <h3>Typ akce</h3>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).WORKSHOP}" th:text="jednodenní">jednodenní</span>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).DLOUHODOBY}" th:text="${'dlouhodobý kurz'}"></span>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).INTENZIVNI}" th:text="${'intenzivní kurz'}"></span>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).AKCE}" th:text="akce"></span>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).NEURCENO}" th:text="neurčeno"></span>
+                                                </div>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="detailrow">
+                                        <td colspan="6">
+                                            <div class="detail">
+                                                <div class="lecturers">
+                                                    <h3>Lektoři:</h3>
+                                                    <th:block th:each="instructor : ${course.instructors}">
+                                                        <span th:text="${instructor}">dksfjalskd</span>
+                                                    </th:block>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="detailrow">
+                                        <td colspan="6">
+                                            <div class="detail">
                                                 <div class="address">
                                                     <h3>Adresa:</h3>
                                                     <span th:text="${course.location.name + ', '}">Název instituce,</span>
@@ -95,6 +122,7 @@
                                             </div>
                                         </td>
                                     </tr>
+
                                     <tr class="detailrow">
                                         <td class="detailcell" colspan="6">
                                             <div class="detail">
