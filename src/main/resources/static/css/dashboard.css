@@ -211,6 +211,19 @@ main {
     text-align: center;
 }
 
+.row_closed{
+    display: none;
+}
+
+.row_open {
+    background-color: rgba(249, 19, 86, 0.5);
+}
+
+/*let the main row stay highlighted even when the event is open*/
+.row_open.regularrow {
+    background-color: rgba(249, 19, 86, 0.8);
+}
+
 .detailrow td {
     text-align: left;
     vertical-align: top;

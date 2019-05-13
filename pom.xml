@@ -36,6 +36,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<!--<scope>provided</scope>-->
+			<!--scope commented out in order to be able to run the app in IDE after downgrading 2018 -> 2017-->
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
