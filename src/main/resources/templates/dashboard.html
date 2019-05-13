@@ -68,8 +68,8 @@
                                         <td th:switch="${course.status}">
                                             <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).OTEVRENA}" th:text="otevřena">otevřena</span>
                                             <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).UZAVRENA}" th:text="ukončena"></span>
-                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).POZDEJI}" th:text="${'bude později'}"></span>
-                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NETREBA}" th:text="${'není třeba'}"></span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).POZDEJI}" th:text="'bude později'"></span>
+                                            <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NETREBA}" th:text="'není třeba'"></span>
                                             <span th:case="${T(cz.danakut.fill_a_db.RegistrationStatus).NEZJISTENO}" th:text=""></span>
                                             <span th:case="*"></span>
                                         </td>
@@ -78,22 +78,38 @@
                                         </i></a></td>
                                     </tr>
                                     <tr class="detailrow">
+                                        <td class="detailcell" colspan="6">
+                                            <div class="detail">
+                                                <div class="description">
+                                                    <h3>O akci:</h3>
+                                                    <span th:text="${course.description}">Popis kurzu.</span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="detailrow">
                                         <td colspan="6">
                                             <div class="detail">
+                                                <div class="coursetype" th:switch="${course.type}">
+                                                    <h3>Typ akce</h3>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).WORKSHOP}" th:text="jednodenní">jednodenní</span>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).DLOUHODOBY}" th:text="'dlouhodobý kurz'"></span>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).INTENZIVNI}" th:text="'intenzivní kurz'"></span>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).AKCE}" th:text="akce"></span>
+                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).NEURCENO}" th:text="neurčeno"></span>
+                                                </div>
                                                 <div class="time">
                                                     <h3>Čas</h3>
                                                     <span th:text="${course.startTime} ? ${course.startTime} + ' - ' : 'neurčeno' ">11:00 - </span>
                                                     <span th:text="${course.endTime} ?: '' ">11:00</span>
                                                 </div>
-                                                <div class="coursetype" th:switch="${course.type}">
-                                                    <h3>Typ akce</h3>
-                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).WORKSHOP}" th:text="jednodenní">jednodenní</span>
-                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).DLOUHODOBY}" th:text="${'dlouhodobý kurz'}"></span>
-                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).INTENZIVNI}" th:text="${'intenzivní kurz'}"></span>
-                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).AKCE}" th:text="akce"></span>
-                                                    <span th:case="${T(cz.danakut.fill_a_db.CourseType).NEURCENO}" th:text="neurčeno"></span>
+                                                <div class="address">
+                                                    <h3>Adresa:</h3>
+                                                    <span th:text="${course.location.name + ', '}">Název instituce,</span>
+                                                    <span th:text="${course.location.street} ? ${course.location.street} + ', ' : '' ">Ulice,</span>
+                                                    <span th:text="${course.location.postalCode} ? ${course.location.postalCode} + ' ' : '' ">PSČ </span>
+                                                    <span th:text="${course.location.city}">město</span>
                                                 </div>
-
                                             </div>
                                         </td>
                                     </tr>
@@ -109,71 +125,42 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr class="detailrow">
-                                        <td colspan="6">
-                                            <div class="detail">
-                                                <div class="address">
-                                                    <h3>Adresa:</h3>
-                                                    <span th:text="${course.location.name + ', '}">Název instituce,</span>
-                                                    <span th:text="${course.location.street} ? ${course.location.street} + ', ' : '' ">Ulice,</span>
-                                                    <span th:text="${course.location.postalCode} ? ${course.location.postalCode} + ' ' : '' ">PSČ </span>
-                                                    <span th:text="${course.location.city}">město</span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
 
-                                    <tr class="detailrow">
-                                        <td class="detailcell" colspan="6">
-                                            <div class="detail">
-                                                <div class="description">
-                                                    <h3>O akci:</h3>
-                                                    <span th:text="${course.description}">Popis kurzu.</span>
-                                                </div>
-                                                <div class="lecturers">
-                                                    <h3>Lektoři:</h3>
-                                                    <ul th:each="instructor : ${course.instructors}">
-                                                        <li th:text="${instructor}">dksfjalskd</li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
                                 </th:block>
                             </tbody>
                         </table>
                     </div>
 
-                    <div id="attended" class="board">
-                        <h2>Absolvované kurzy</h2>
-                        <table>
-                            <thead>
-                                <th colspan="2">Datum</th>
-                                <th>Linie</th>
-                                <th>Název</th>
-                                <th>Místo</th>
-                                <th>Začátek</th>
-                                <th>Konec</th>
-                            </thead>
-                            <tbody>
+                    <!--<div id="attended" class="board">-->
+                        <!--<h2>Absolvované kurzy</h2>-->
+                        <!--<table>-->
+                            <!--<thead>-->
+                                <!--<th colspan="2">Datum</th>-->
+                                <!--<th>Linie</th>-->
+                                <!--<th>Název</th>-->
+                                <!--<th>Místo</th>-->
+                                <!--<th>Začátek</th>-->
+                                <!--<th>Konec</th>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
 
-                            </tbody>
-                        </table>
-                    </div>
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
 
-                    <div id="alarms" class="board">
-                        <h2>Nastavená upozornění</h2>
-                        <table>
-                            <thead>
-                                <th>Hlídám</th>
-                                <th>Nalezeno</th>
-                                <th>Stav registrace</th>
-                            </thead>
-                            <tbody>
+                    <!--<div id="alarms" class="board">-->
+                        <!--<h2>Nastavená upozornění</h2>-->
+                        <!--<table>-->
+                            <!--<thead>-->
+                                <!--<th>Hlídám</th>-->
+                                <!--<th>Nalezeno</th>-->
+                                <!--<th>Stav registrace</th>-->
+                            <!--</thead>-->
+                            <!--<tbody>-->
 
-                            </tbody>
-                        </table>
-                    </div>
+                            <!--</tbody>-->
+                        <!--</table>-->
+                    <!--</div>-->
 
                 </div>
 
@@ -181,6 +168,6 @@
 
         </main>
 
-        <!--<script src="../static/scripts/dashboard.js" th:src="${'scripts/dashboard.js'}"></script>-->
+        <script src="../static/scripts/dashboard.js" th:src="${'scripts/dashboard.js'}"></script>
     </body>
 </html>

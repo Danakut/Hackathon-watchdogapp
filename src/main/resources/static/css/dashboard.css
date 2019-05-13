@@ -230,13 +230,3 @@ main {
 .detail h3 {
     margin: 0.5rem 0 1rem 0;
 }
-
-.description {
-    width: 50%;
-}
-
-.lecturers {
-    margin-left: 2rem;
-    min-width: 10rem;
-    width: 20%;
-}

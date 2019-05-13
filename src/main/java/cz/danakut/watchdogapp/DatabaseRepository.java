@@ -1,4 +1,4 @@
-package cz.danakut.coursewatchdog.watchdogapp;
+package cz.danakut.watchdogapp;
 
 import java.sql.*;
 import java.time.LocalDate;
