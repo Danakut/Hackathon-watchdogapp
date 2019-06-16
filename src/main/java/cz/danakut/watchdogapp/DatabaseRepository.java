@@ -16,6 +16,7 @@ public class DatabaseRepository {
 
     public DatabaseRepository() throws SQLException {
         conn = DriverManager.getConnection(dbUrl, user, pass);
+        throw new SQLException();
     }
 
     public Course findCourse(int id) throws SQLException {
